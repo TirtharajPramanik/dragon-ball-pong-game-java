@@ -4,11 +4,13 @@
 
 ## Table of Content
 
-
+- [Dragon Ball - pong game in JAVA](#dragon-ball---pong-game-in-java)
+- [Table of Content](#table-of-content)
 - [Demo](#demo)
 - [Folder Structure](#folder-structure)
 - [Libraries and Frameworks](#libraries-and-frameworks)
 - [Setup and Run](#setup-and-run)
+- [How to Play](#how-to-play)
 
 ## Demo
 
@@ -19,19 +21,20 @@
 ```
 Project
 .
-├── README.md
 └── src/
     ├── AiController.java
     ├── BallController.java
     ├── Constants.java
     ├── KeyEventListener.java
     ├── Main.java
+    ├── ObjController.java
     ├── PlayerController.java
     ├── Shape.java
     ├── Time.java
     └── Window.java
 
-1 directory, 10 files
+1 directories, 10 files
+
 ```
 
 ## Libraries and Frameworks
@@ -57,3 +60,7 @@ $ javac -d dist @sources.txt
 
 $ java dist/Main
 ```
+
+## How to Play
+
+> press `up arrow key` or `w key` to go up and press `down arrow key` or `s key` to go down;

@@ -12,8 +12,9 @@ public class Constants {
     public static final Color PADDLE_COLOR = Color.WHITE;
 
     public static final double BALL_RADIUS = 20;
+    public static final int BALL_SPEED = 200;
     public static final Color BALL_COLOR = Color.WHITE;
-
+    public static final int MAX_ANGLE = 45;
     public static double INSETES_TOP;
     public static double INSETES_BOTTOM;
 }

@@ -1,18 +1,21 @@
 public class AiController extends ObjController {
-    private final Shape ai, ball;
+    private final Shape ai;
+    private final BallController ball;
     int speed = Constants.PADDLE_SPEED;
 
-    public AiController(Shape ai, Shape ball) {
+    public AiController(Shape ai, BallController ball) {
         this.ai = ai;
         this.ball = ball;
     }
 
     @Override
     public void update(double dt) {
-        if (ball.y + ball.h < ai.y) {
-            moveUp(dt);
-        } else if (ball.y > ai.y + ai.h) {
-            moveDown(dt);
+        if (ball.vx > 0) {
+            if (ball.ball.y + ball.ball.h < ai.y + (ai.h / 2)) {
+                moveUp(dt);
+            } else if (ball.ball.y > ai.y + (ai.h / 2)) {
+                moveDown(dt);
+            }
         }
     }
 

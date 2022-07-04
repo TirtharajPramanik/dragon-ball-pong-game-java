@@ -8,7 +8,7 @@ public class Window extends JFrame implements Runnable {
     private final PlayerController playerController;
     private final AiController aiController;
     private final BallController ballController;
-
+    
     public Window() {
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         setTitle(Constants.WINDOW_TITLE);
@@ -27,7 +27,7 @@ public class Window extends JFrame implements Runnable {
         this.ball = new Shape((double) Constants.WINDOW_WIDTH / 2, (double) Constants.WINDOW_HEIGHT / 2, Constants.BALL_RADIUS, Constants.BALL_RADIUS, Constants.BALL_COLOR);
         this.playerController = new PlayerController(this.player, keyListener);
         this.ballController = new BallController(this.ball, player, ai);
-        this.aiController = new AiController(this.ai, ball);
+        this.aiController = new AiController(this.ai, ballController);
     }
 
     void update(final double dt) {
