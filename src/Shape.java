@@ -4,9 +4,9 @@ import java.awt.geom.Rectangle2D;
 
 public class Shape {
     public final double h;
-    private final double x;
-    private final double w;
-    private final Color color;
+    public final double w;
+    public final Color color;
+    public double x;
     public double y;
 
     public Shape(double x, double y, double w, double h, Color color) {

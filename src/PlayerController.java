@@ -4,7 +4,7 @@ public class PlayerController {
 
     private final Shape player;
     private final KeyEventListener keyListener;
-    private final int speed = Constants.PADDLE_SPEED;
+    int speed = Constants.PADDLE_SPEED;
 
     public PlayerController(Shape player, KeyEventListener keyListener) {
         this.player = player;
