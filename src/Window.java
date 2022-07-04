@@ -26,8 +26,8 @@ public class Window extends JFrame implements Runnable {
         this.ai = new Shape(Constants.WINDOW_WIDTH - (Constants.PADDLE_WIDTH * 2), Constants.PADDLE_HEIGHT, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, Constants.PADDLE_COLOR);
         this.ball = new Shape((double) Constants.WINDOW_WIDTH / 2, (double) Constants.WINDOW_HEIGHT / 2, Constants.BALL_RADIUS, Constants.BALL_RADIUS, Constants.BALL_COLOR);
         this.playerController = new PlayerController(this.player, keyListener);
-        this.aiController = new AiController(this.ai, keyListener);
         this.ballController = new BallController(this.ball, player, ai);
+        this.aiController = new AiController(this.ai, ball);
     }
 
     void update(final double dt) {

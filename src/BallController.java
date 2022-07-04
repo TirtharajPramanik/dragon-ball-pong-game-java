@@ -1,4 +1,4 @@
-public class BallController {
+public class BallController extends ObjController {
     private final Shape ball, player, ai;
     int xSpeed = -150;
     int ySpeed = 100;
@@ -9,6 +9,7 @@ public class BallController {
         this.ai = ai;
     }
 
+    @Override
     public void update(double dt) {
         ball.x += dt * xSpeed;
         ball.y += dt * ySpeed;
