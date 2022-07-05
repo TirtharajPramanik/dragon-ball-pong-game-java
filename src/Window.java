@@ -8,7 +8,7 @@ public class Window extends JFrame implements Runnable {
     private final PlayerController playerController;
     private final AiController aiController;
     private final BallController ballController;
-    
+
     public Window() {
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         setTitle(Constants.WINDOW_TITLE);
@@ -48,6 +48,7 @@ public class Window extends JFrame implements Runnable {
         this.player.drawRect(g2);
         this.ai.drawRect(g2);
         this.ball.drawEllipse(g2);
+        this.ballController.draw(g2);
     }
 
     @Override

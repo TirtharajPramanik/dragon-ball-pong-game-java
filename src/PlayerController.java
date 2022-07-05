@@ -1,6 +1,6 @@
 import java.awt.event.KeyEvent;
 
-public class PlayerController extends ObjController {
+public class PlayerController {
     private final Shape player;
     private final KeyEventListener keyListener;
     int speed = Constants.PADDLE_SPEED;
@@ -10,7 +10,7 @@ public class PlayerController extends ObjController {
         this.keyListener = keyListener;
     }
 
-    @Override
+
     public void update(double dt) {
         if (keyListener.isKeyPressed(KeyEvent.VK_UP) || keyListener.isKeyPressed(KeyEvent.VK_W)) {
             moveUp(dt);

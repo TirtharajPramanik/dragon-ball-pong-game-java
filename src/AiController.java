@@ -1,4 +1,4 @@
-public class AiController extends ObjController {
+public class AiController {
     private final Shape ai;
     private final BallController ball;
     int speed = Constants.PADDLE_SPEED;
@@ -8,7 +8,6 @@ public class AiController extends ObjController {
         this.ball = ball;
     }
 
-    @Override
     public void update(double dt) {
         if (ball.vx > 0) {
             if (ball.ball.y + ball.ball.h < ai.y + (ai.h / 2)) {

@@ -1,7 +1,13 @@
-public class BallController extends ObjController {
+import java.awt.*;
+
+public class BallController {
     public final Shape ball, player, ai;
+    private final TextHelper gameOverText = new TextHelper("Game Over!", (double) (Constants.WINDOW_WIDTH / 2) - (Constants.FONT_SIZE * 2), (Constants.WINDOW_HEIGHT - Constants.INSETES_TOP) / 2);
     public double vx = Constants.BALL_SPEED;
     public double vy = Constants.BALL_SPEED;
+    public int playerScore = 0, aiScore = 0;
+    public TextHelper playerScoreText = new TextHelper("" + playerScore, Constants.PADDLE_WIDTH / 2, Constants.INSETES_TOP + Constants.FONT_SIZE);
+    public TextHelper aiScoreText = new TextHelper("" + aiScore, Constants.WINDOW_WIDTH - (Constants.PADDLE_WIDTH / 2) - Constants.FONT_SIZE, Constants.INSETES_TOP + Constants.FONT_SIZE);
 
     public BallController(Shape ball, Shape player, Shape ai) {
         this.ball = ball;
@@ -26,14 +32,19 @@ public class BallController extends ObjController {
         vy = nvy;
     }
 
-    @Override
+
     public void update(double dt) {
         ball.x += dt * vx;
         ball.y += dt * vy;
 
-        if (ball.x <= 0 || ball.x + ball.w >= Constants.WINDOW_WIDTH) {
-            System.out.println("Game Over!");
-            System.exit(0);
+        if (ball.x + ball.w >= Constants.WINDOW_WIDTH) {
+            playerScore++;
+            playerScoreText.text = "" + playerScore;
+            ball.x = (double) Constants.WINDOW_WIDTH / 2;
+        } else if (ball.x <= 0) {
+            aiScore++;
+            aiScoreText.text = "" + aiScore;
+            ball.x = (double) Constants.WINDOW_WIDTH / 2;
         }
 
         if (ball.y <= Constants.INSETES_TOP || ball.y + ball.h >= Constants.WINDOW_HEIGHT - Constants.INSETES_BOTTOM) {
@@ -46,6 +57,14 @@ public class BallController extends ObjController {
             shoot(ai);
         }
 
+    }
+
+    public void draw(Graphics2D g2) {
+        this.playerScoreText.draw(g2, Color.CYAN);
+        this.aiScoreText.draw(g2, Color.GREEN);
+//        if (playerScore > 2 || aiScore > 2) {
+//            gameOverText.draw(g2, Color.ORANGE);
+//        }
     }
 }
 
