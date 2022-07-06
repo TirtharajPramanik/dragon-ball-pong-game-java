@@ -2,12 +2,11 @@ import java.awt.*;
 
 public class BallController {
     public final Shape ball, player, ai;
-    private final TextHelper gameOverText = new TextHelper("Game Over!", (double) (Constants.WINDOW_WIDTH / 2) - (Constants.FONT_SIZE * 2), (Constants.WINDOW_HEIGHT - Constants.INSETES_TOP) / 2);
     public double vx = Constants.BALL_SPEED;
     public double vy = Constants.BALL_SPEED;
-    public int playerScore = 0, aiScore = 0;
-    public TextHelper playerScoreText = new TextHelper("" + playerScore, Constants.PADDLE_WIDTH / 2, Constants.INSETES_TOP + Constants.FONT_SIZE);
-    public TextHelper aiScoreText = new TextHelper("" + aiScore, Constants.WINDOW_WIDTH - (Constants.PADDLE_WIDTH / 2) - Constants.FONT_SIZE, Constants.INSETES_TOP + Constants.FONT_SIZE);
+    public int playerScore = -1, aiScore = 0;
+    public TextHelper playerScoreText = new TextHelper("" + playerScore, (Constants.WINDOW_WIDTH / 2.0) - Constants.FONT_SIZE, Constants.INSETES_TOP + Constants.FONT_SIZE);
+    public TextHelper aiScoreText = new TextHelper("" + aiScore, Constants.WINDOW_WIDTH - (Constants.WINDOW_WIDTH / 2.0) + Constants.FONT_SIZE, Constants.INSETES_TOP + Constants.FONT_SIZE);
 
     public BallController(Shape ball, Shape player, Shape ai) {
         this.ball = ball;
@@ -32,23 +31,27 @@ public class BallController {
         vy = nvy;
     }
 
+    private void resetBall() {
+        ball.x = ai.x - ball.w - 10;
+        ball.y = (ai.y + (ai.h / 2)) - (ball.h / 2);
+    }
 
     public void update(double dt) {
         ball.x += dt * vx;
         ball.y += dt * vy;
 
-        if (ball.x + ball.w >= Constants.WINDOW_WIDTH) {
+        if (ball.x + ball.w >= ai.x + ai.w) {
             playerScore++;
             playerScoreText.text = "" + playerScore;
-            ball.x = (double) Constants.WINDOW_WIDTH / 2;
-        } else if (ball.x <= 0) {
+            resetBall();
+        } else if (ball.x <= player.x) {
             aiScore++;
             aiScoreText.text = "" + aiScore;
-            ball.x = (double) Constants.WINDOW_WIDTH / 2;
+            resetBall();
         }
 
         if (ball.y <= Constants.INSETES_TOP || ball.y + ball.h >= Constants.WINDOW_HEIGHT - Constants.INSETES_BOTTOM) {
-            vy *= -1;
+            vy *= -1.0;
         }
 
         if ((ball.x <= player.x + player.w && ball.x >= player.w) && (ball.y <= player.y + player.h && ball.y + ball.h >= player.y)) {
@@ -56,15 +59,14 @@ public class BallController {
         } else if ((ball.x + ball.w >= ai.x && ball.x + ball.w <= ai.x + ai.w) && (ball.y <= ai.y + ai.h && ball.y + ball.h >= ai.y)) {
             shoot(ai);
         }
-
     }
 
     public void draw(Graphics2D g2) {
-        this.playerScoreText.draw(g2, Color.CYAN);
-        this.aiScoreText.draw(g2, Color.GREEN);
-//        if (playerScore > 2 || aiScore > 2) {
-//            gameOverText.draw(g2, Color.ORANGE);
-//        }
+        this.playerScoreText.draw(g2, Color.LIGHT_GRAY);
+        this.aiScoreText.draw(g2, Color.LIGHT_GRAY);
+        if (playerScore > 2 || aiScore > 2) {
+            Main.changeState(0);
+        }
     }
 }
 
