@@ -11,7 +11,6 @@ public class Main {
         switch (newState) {
             case 0:
                 if (state != 0) {
-//                    mainThread.interrupt();
                     Window.isRunning = false;
                     mainThread = new Thread(new MainMenu());
                     mainThread.start();
@@ -22,7 +21,6 @@ public class Main {
                 break;
             case 1:
                 if (state != 1) {
-//                    mainThread.interrupt();
                     MainMenu.isRunning = false;
                     mainThread = new Thread(new Window());
                     mainThread.start();
