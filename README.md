@@ -4,8 +4,7 @@
 
 ## Table of Content
 
-- [Dragon Ball - pong game in JAVA](#dragon-ball---pong-game-in-java)
-- [Table of Content](#table-of-content)
+
 - [Demo](#demo)
 - [Folder Structure](#folder-structure)
 - [Libraries and Frameworks](#libraries-and-frameworks)
@@ -21,20 +20,22 @@
 ```
 Project
 .
-└── src/
+├── README.md
+├── demo
+│   └── gamePlay.png
+└── src
     ├── AiController.java
     ├── BallController.java
     ├── Constants.java
     ├── KeyEventListener.java
     ├── Main.java
-    ├── ObjController.java
     ├── PlayerController.java
     ├── Shape.java
+    ├── TextHelper.java
     ├── Time.java
     └── Window.java
 
-1 directories, 10 files
-
+2 directories, 12 files
 ```
 
 ## Libraries and Frameworks
