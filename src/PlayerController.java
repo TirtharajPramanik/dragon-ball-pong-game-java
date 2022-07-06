@@ -12,7 +12,9 @@ public class PlayerController {
 
 
     public void update(double dt) {
-        if (keyListener.isKeyPressed(KeyEvent.VK_UP) || keyListener.isKeyPressed(KeyEvent.VK_W)) {
+        if (keyListener.isKeyPressed(KeyEvent.VK_ESCAPE) || keyListener.isKeyPressed(KeyEvent.VK_SPACE)) {
+            Main.changeState(0);
+        } else if (keyListener.isKeyPressed(KeyEvent.VK_UP) || keyListener.isKeyPressed(KeyEvent.VK_W)) {
             moveUp(dt);
         } else if (keyListener.isKeyPressed(KeyEvent.VK_DOWN) || keyListener.isKeyPressed(KeyEvent.VK_S)) {
             moveDown(dt);

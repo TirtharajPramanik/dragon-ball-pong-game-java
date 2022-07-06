@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Window extends JFrame implements Runnable {
 
+    public static boolean isRunning = true;
     private final Graphics2D g2;
     private final Shape bg, player, ai, ball;
     private final PlayerController playerController;
@@ -22,9 +23,9 @@ public class Window extends JFrame implements Runnable {
 
         this.g2 = (Graphics2D) getGraphics();
         this.bg = new Shape(0.0, 0.0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, Constants.WINDOW_COLOR);
-        this.player = new Shape(Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, Constants.PADDLE_COLOR);
-        this.ai = new Shape(Constants.WINDOW_WIDTH - (Constants.PADDLE_WIDTH * 2), Constants.PADDLE_HEIGHT, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, Constants.PADDLE_COLOR);
-        this.ball = new Shape((double) Constants.WINDOW_WIDTH / 2, (double) Constants.WINDOW_HEIGHT / 2, Constants.BALL_RADIUS, Constants.BALL_RADIUS, Constants.BALL_COLOR);
+        this.player = new Shape(Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, 10, 10, Constants.PADDLE_COLOR);
+        this.ai = new Shape(Constants.WINDOW_WIDTH - (Constants.PADDLE_WIDTH * 2), Constants.PADDLE_HEIGHT, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT, 10, 10, Constants.PADDLE_COLOR);
+        this.ball = new Shape(ai.x - Constants.BALL_RADIUS, (ai.y + (ai.h / 2)) - (Constants.BALL_RADIUS / 2), Constants.BALL_RADIUS, Constants.BALL_RADIUS, Constants.BALL_COLOR);
         this.playerController = new PlayerController(this.player, keyListener);
         this.ballController = new BallController(this.ball, player, ai);
         this.aiController = new AiController(this.ai, ballController);
@@ -54,13 +55,13 @@ public class Window extends JFrame implements Runnable {
     @Override
     public void run() {
         double lastFrameTime = 0.0;
-        //noinspection InfiniteLoopStatement
-        while (true) {
+        while (isRunning) {
             final double time = Time.getTime();
             final double deltaTime = time - lastFrameTime;
             lastFrameTime = time;
 
             this.update(deltaTime);
         }
+        this.dispose();
     }
 }

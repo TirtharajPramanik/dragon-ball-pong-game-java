@@ -27,6 +27,12 @@ public class TextHelper {
         this.y = y;
     }
 
+    public double[] getRect() {
+        double rectx = x + font.getSize() * 2;
+        double recty = y - font.getSize();
+        return new double[]{x, rectx, y, recty};
+    }
+
     public void draw(Graphics2D g2, Color color) {
         g2.setColor(color);
         g2.setFont(font);
